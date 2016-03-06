@@ -15,12 +15,12 @@ void bubblesort(vector<char>& vec) {
 	for (int i = 0; i < n - 1; i++) {
 
 		for (int j = 0; j < n - 1; j++) {
-			if (vec[i] > vec[i+1]) {
+			if (vec[j] > vec[j+1]) {
 
 				// swap them
-				char temp = vec[i];
-				vec[i] = vec[i+1];
-				vec[i+1] = temp;
+				char temp = vec[j];
+				vec[j] = vec[j+1];
+				vec[j+1] = temp;
 
 				// tell program to run thru vec at least once more
 				changes_made = true;

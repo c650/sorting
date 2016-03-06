@@ -18,10 +18,10 @@ void insertionsort(vector<char>& vec) {
 				vec[pos] = vec[pos - 1];
 				pos--;
 				
-				if (vec[pos + 1] < hold) break;
+				if (vec[pos + 1] <= hold) break;
 			}
 
-			vec[pos + 1] = hold;
+			vec[pos] = hold;
 		}
 	}
 }
