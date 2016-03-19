@@ -4,25 +4,34 @@
 #include <cstdlib>
 
 using namespace std;
+bool sorted(vector<char>& vec) {
+	for (int i = 1, n = vec.size(); i < n; i++) {
+		if (vec[i] < vec[i-1]) return false;
+	}
 
+	return true;
+}
 void insertionsort(vector<char>& vec) {
 	int n = vec.size();
 
-	for (int i = 1; i < n; i++) {
-		if (vec[i-1] > vec[i]) {
-			int hold = vec[i]; // hold value
+	for (int j = 1; j < n; j++) {
+		for (int i = 1; i < n; i++) {
+			if (vec[i-1] > vec[i]) {
+				int hold = vec[i]; // hold value
 
-			int pos = i; // track positive to insert `hold`
-			
-			while ( pos > 0) {
-				vec[pos] = vec[pos - 1];
-				pos--;
+				int pos = i; // track positive to insert `hold`
 				
-				if (vec[pos + 1] <= hold) break;
-			}
+				while ( pos > 0) {
+					vec[pos] = vec[pos - 1];
+					pos--;
+					
+					if (vec[pos + 1] <= hold) break;
+				}
 
-			vec[pos] = hold;
+				vec[pos] = hold;
+			}
 		}
+		if (sorted(vec)) break;
 	}
 }
 

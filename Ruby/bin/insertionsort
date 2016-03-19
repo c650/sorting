@@ -1,26 +1,33 @@
 #! /usr/bin/env ruby
+def sorted?(arr)
+	for i in 1...arr.length
+		return false if arr[i] < arr[i-1]
+	end
 
+	return true
+end
 puts "give me a string"
 str = gets.chomp.split('')
 strlen = str.length
 
+for j in 1..strlen
+	for i in 1...strlen #exclusive range
+		if str[i-1] > str[i]
+			hold = str[i]
 
-for i in 1...strlen #exclusive range
-	if str[i-1] > str[i]
-		hold = str[i]
+			pos = i
 
-		pos = i
+			while pos > 0
+				str[pos] = str[pos - 1] # shift up
+				pos -= 1
 
-		while pos > 0
-			str[pos] = str[pos - 1] # shift up
-			pos -= 1
+				break if str[pos + 1] <= hold
+			end
 
-			break if str[pos + 1] <= hold
+			str[pos] = hold
 		end
-
-		str[pos] = hold
-
 	end
-end
 
+	break if sorted?(str)
+end
 puts str.join('')

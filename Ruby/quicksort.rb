@@ -1,5 +1,5 @@
 #! /usr/bin/env ruby
-require 'pry'
+
 # str is array of chars
 # pivot point is index in array to pivot on
 # returns type like `str`
@@ -31,18 +31,6 @@ def quicksort(str, pivot_point)
 	return str.flatten
 
 end
-
-
-
-
-
-
-
-
-
-
-
-
 
 puts "give me a string"
 str = gets.chomp.split('')
