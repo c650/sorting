@@ -24,15 +24,14 @@ void mergesort(vector<char>& vec) {
 
 	vector<char> left(vec.begin(), vec.begin() + n / 2);
 	vector<char> right(vec.begin() + n / 2, vec.end());
-	
+	vec.erase(vec.begin(), vec.end()); // because we have copied the values to the partitions (left and right)
+
 	mergesort(left); mergesort(right);
 
 	int itr = 0;
-
-	vec.erase(vec.begin(), vec.end());
 	
 	while(!left.empty() && !right.empty() && itr < n) {
-		if (left[0] < right[0]) {
+		if (left.front() < right.front()) {
 
 			vec.push_back(left.front());
 
