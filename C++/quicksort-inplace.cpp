@@ -1,50 +1,19 @@
+/* Currently Inoperable */
 #include <iostream>
 #include <string>
 #include <vector>
 #include <cstdlib>
+#include <iterator>
 
 using namespace std;
+
 void swap(vector<char>::iterator a, vector<char>::iterator b) {
 	char tmp = *a;
 	*a = *b;
 	*b = tmp;
 }
-bool sorted(vector<char>::iterator begin, vector<char>::iterator end) {
-	for (auto i = begin; i != end - 1; i++) {
-		if (*(i + 1) < *i) return false;
-	}
-
-	return true;
-}
-void insertionsort(vector<char>::iterator begin, vector<char>::iterator end) {
-
-	while (!sorted(begin, end)) {
-		for (auto i = begin + 1; i != end; i++) {
-
-			if (*(i - 1) > *i) {
-				char hold = *i;
-				auto pos = i;
-
-				while (pos > begin && *(pos - 1) > hold) {
-					
-					*pos = *(pos - 1);
-					pos--;
-				}
-
-				*pos = hold;
-			}
-		}
-	}
-}
 void quicksort(vector<char>::iterator begin, vector<char>::iterator end) {
-	/*
-	 * Recursion Terminating Conditions:
-	*/
 	if (distance(begin,end) <= 1) return;
-	if (distance(begin, end) <= 10) {
-		insertionsort(begin, end);
-		return;
-	}
 
 	vector<char>::iterator pivot, a, b;
 
