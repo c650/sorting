@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 #include <cstdlib>
+#include <iterator>
+#include <algorithm>
 
 using namespace std;
 void swap(vector<char>::iterator a, vector<char>::iterator b) {
@@ -46,25 +48,26 @@ void quicksort(vector<char>::iterator begin, vector<char>::iterator end) {
 		return;
 	}
 
-	vector<char>::iterator pivot, a, b;
+	vector<char>::iterator a, b;
+ 
+    char pivot = *(end - 1);
 
-	pivot = begin;
-	a = begin; b = end - 1;
+    a = begin; b = end - 1;
 
-	while(b > a) {
-		if ( *(b-1) > *pivot) {
-			*b = *(b-1);
-			b--;
-		} else {
-			swap(b-1, a);
-			a++;
-		}
-	}
+    while(b > a) {
+        if ( *(b-1) > pivot) {
+            *b = *(b-1);
+            b--;
+        } else {
+            swap(b-1, a);
+            a++;
+        }
+    }
 
-	*b = *pivot;
+    *b = pivot;
 
-	quicksort(begin, b);
-	quicksort(b + 1, end);
+    quicksort(begin, b);
+    quicksort(b + 1, end);
 }
 
 
@@ -80,5 +83,6 @@ int main() {
 	string str(vec.begin(), vec.end());
 
 	cout << str << endl;
+
 	return 0;
 }
