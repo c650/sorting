@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <thread>
+#include <functional>
 
 bool sorted(char* arr, int begin, int end) {
 	for (auto i = begin; i < end - 1; i++) {
@@ -61,8 +63,11 @@ void quicksort(char* arr, const int& begin, const int& end) {
 
     arr[b] = pivot;
 
-    quicksort(arr, begin, b);
-    quicksort(arr, b + 1, end);
+    std::thread left(quicksort, arr, begin, b);
+    std::thread right(quicksort, arr, b+1, end);
+    
+    left.join();
+    right.join();
 }
 
 
