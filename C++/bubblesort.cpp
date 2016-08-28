@@ -7,30 +7,19 @@ using namespace std;
 
 void bubblesort(vector<char>& vec) {
 	int n = vec.size();
+	char temp;
 
-	// nest loops because O(n^2)
-	// changes_made is an optimization that can reduce runtime in certain conditions
-	bool changes_made = false;
+	for (int i = 0; i < n; i++) {
 
-	for (int i = 0; i < n - 1; i++) {
+		for (int j = i+1; j < n; j++) {
+			if (vec[i] > vec[j]) {
 
-		for (int j = 0; j < n - 1; j++) {
-			if (vec[j] > vec[j+1]) {
+				temp = vec[i];
+				vec[i] = vec[j];
+				vec[j] = temp;
 
-				// swap them
-				char temp = vec[j];
-				vec[j] = vec[j+1];
-				vec[j+1] = temp;
-
-				// tell program to run thru vec at least once more
-				changes_made = true;
 			}
 		}
-
-		// optimization to exit loop if no changes made
-		if (!changes_made) break;
-
-		changes_made = false;
 	}
 }
 
