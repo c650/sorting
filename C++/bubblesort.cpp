@@ -9,13 +9,13 @@ void bubblesort(vector<char>& vec) {
 	int n = vec.size();
 	char temp;
 
-	for (int i = 0; i < n; i++) {
+	for (int i = 0; i < n-1; i++) {
 
-		for (int j = i+1; j < n; j++) {
-			if (vec[i] > vec[j]) {
+		for (int j = 0; j < n-1; j++) {
+			if (vec[j+1] < vec[j]) {
 
-				temp = vec[i];
-				vec[i] = vec[j];
+				temp = vec[j+1];
+				vec[j+1] = vec[j];
 				vec[j] = temp;
 
 			}
