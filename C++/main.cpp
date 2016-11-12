@@ -50,6 +50,8 @@ int main() {
 	pvec(vec);
 	shuf(vec);
 
+	Sorting::mergesort<int>(vec);
+	pvec(vec);
 
 	return 0;
 }
