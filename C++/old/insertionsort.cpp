@@ -13,7 +13,7 @@ bool sorted(vector<char>& vec) {
 }
 void insertionsort(vector<char>& vec) {
 	int n = vec.size();
-	/* 
+	/*
 	* The first element in the array is treated as sorted,
 	* so we go on to the second one, vec[1], which is why
 	* the for loop starts at i = 1
@@ -29,9 +29,9 @@ void insertionsort(vector<char>& vec) {
 				int hold = vec[i]; // hold value
 
 				int pos = i; // track positive to insert `hold`
-				
+
 				while (pos > 0 && vec[pos - 1] > hold) {
-					
+
 					vec[pos] = vec[pos - 1];
 					pos--;
 
