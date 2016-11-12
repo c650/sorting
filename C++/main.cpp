@@ -19,40 +19,34 @@ template<typename T>
 static void shuf(std::vector<T>& v) {
 	for (int i = v.size() - 1 ; i >= 0 ; i--)
 		std::swap(v[i], v[rand() % v.size()]);
-	//pvec(v);
 }
 
 int main() {
 	srand(time(NULL));
 
 	std::vector<int> vec(10);
-	for (auto& a : vec) {
+	for (auto& a : vec)
 		a = rand() % vec.size();
-	}
 
 	pvec(vec);
 
-	std::sort(vec.begin(),vec.end());
-	pvec(vec);
-	shuf(vec);
-
-	Sorting::bubblesort<int>(vec);
+	std::sort( vec.begin() , vec.end() );
 	pvec(vec);
 	shuf(vec);
 
-	Sorting::insertionsort<int>(vec);
+	Sorting::bubblesort<int>( vec.begin() , vec.end() );
 	pvec(vec);
 	shuf(vec);
 
-	Sorting::selectionsort<int>(vec);
+	Sorting::insertionsort<int>(vec.begin() , vec.end());
+	pvec(vec);
+	shuf(vec);
+
+	Sorting::selectionsort<int>(vec.begin() , vec.end());
 	pvec(vec);
 	shuf(vec);
 
 	Sorting::quicksort<int>(vec.begin() , vec.end());
-	pvec(vec);
-	shuf(vec);
-
-	Sorting::mergesort<int>(vec);
 	pvec(vec);
 	shuf(vec);
 

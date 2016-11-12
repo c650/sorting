@@ -30,19 +30,19 @@ void mergesort(typename std::vector<T>::iterator begin, typename std::vector<T>:
 
 	while(left != mid && right != end && itr != end) {
 		if (*left <= *right) {
-			std::swap(*itr++, *left++);
+			*itr = *left++;
 		} else {
-			std::swap(*itr++, *right++);
+			*itr = *right++;
 		}
 	}
 
 	if (left != mid) {
 		while (itr != end && left != mid) {
-			std::swap(*itr++, *left++);
+
 		}
 	} else if (right != end) {
 		while (itr != end && right != end) {
-			std::swap(*itr++, *right++);
+
 		}
 	}
 }
