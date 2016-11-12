@@ -7,65 +7,46 @@
 namespace Sorting {
 
 	template<typename T>
-	bool sorted(std::vector<T>& vec);
+	using Iterator = typename std::vector<T>::iterator;
 
 	template<typename T>
-	void bubblesort(std::vector<T>& vec) {
-		int n = vec.size();
-		T temp;
-
-		for (int i = 0; i < n-1; i++) {
-
-			for (int j = 0; j < n-1; j++) {
-				if (vec[j+1] < vec[j]) {
-
-					temp = vec[j+1];
-					vec[j+1] = vec[j];
-					vec[j] = temp;
-
-				}
-			}
-		}
+	void bubblesort(Iterator<T> begin, Iterator<T> end) {
+		for (Iterator<T> it = begin ; it != end-1 ; it++)
+			for (Iterator<T> inner_it = begin ; inner_it != end-1 ; inner_it++)
+				if ( *inner_it > *(inner_it+1) )
+					std::swap(*inner_it, *(inner_it+1));
 	}
 
 	template<typename T>
-	void insertionsort(std::vector<T>& vec) {
-		int n = vec.size();
-		while (!sorted(vec)) {
-			for (int i = 1; i < n; i++) {
-				if (vec[i-1] > vec[i]) {
-					int hold = vec[i];
+	void insertionsort(Iterator<T> begin, Iterator<T> end) {
+		for (Iterator<T> it = begin ; it != end ; it++) {
+			for (Iterator<T> inner_it = begin+1 ; inner_it != end ; inner_it++) {
+				if ( *inner_it < *(inner_it-1) ) {
 
-					int pos = i;
-					while (pos > 0 && vec[pos - 1] > hold) {
+					T hold = *inner_it;
+					Iterator<T> copy = inner_it;
 
-						vec[pos] = vec[pos - 1];
-						pos--;
-					}
-					vec[pos] = hold;
-				}
-			}
-		}
+					while (copy != begin && *(copy-1) > hold) {
+						*copy = *(copy-1);
+						copy--;
+					} /* end while */
+
+					*copy = hold;
+				} /* end if */
+			} /* end for */
+		} /* end for */
 	}
 
 	template<typename T>
-	void selectionsort(std::vector<T>& vec) {
-		int n = vec.size();
+	void selectionsort(Iterator<T> begin, Iterator<T> end) {
+		for (Iterator<T> it = begin ; it != end ; it++) {
+			Iterator<T> min_pos = it;
 
-		for (int i = 0; i < n; i++) {
+			for (Iterator<T> inner_it = it+1 ; inner_it != end ; inner_it++)
+				min_pos = *inner_it < *min_pos ? inner_it : min_pos;
 
-			int min_pos = i;
-
-			for (int j = i + 1; j < n; j++) {
-				if (vec[j] < vec[min_pos]) {
-					min_pos = j;
-				}
-			}
-			if (min_pos != i) {
-				int tmp = vec[i];
-				vec[i] = vec[min_pos];
-				vec[min_pos] = tmp;
-			}
+			if (min_pos != it)
+				std::swap(*it, *min_pos);
 		}
 	}
 
@@ -87,7 +68,7 @@ namespace Sorting {
 
 	    std::vector<T> left(vec.begin(), vec.begin() + n / 2);
 	    std::vector<T> right(vec.begin() + n / 2, vec.end());
-	    vec.clear(); // because we have copied the values to the partitions (left and right)
+	    vec.clear();
 
 	    mergesort(left); mergesort(right);
 
@@ -119,10 +100,10 @@ namespace Sorting {
 
 
 	template<typename T>
-	void quicksort(typename std::vector<T>::iterator begin, typename std::vector<T>::iterator end) {
+	void quicksort(Iterator<T> begin, Iterator<T> end) {
 	    if (std::distance(begin,end) <= 1) return;
 
-	    typename std::vector<T>::iterator a, b;
+	    Iterator<T> a, b;
 
 	    T pivot = *(end - 1);
 
@@ -133,8 +114,7 @@ namespace Sorting {
 	            *b = *(b-1);
 	            b--;
 	        } else {
-            	std::swap(*(b-1), *a);
-	            a++;
+            	std::swap(*(b-1), *a++);
 	        }
 	    }
 
@@ -144,14 +124,6 @@ namespace Sorting {
 	    quicksort<T>(b + 1, end);
 	}
 
-	template<typename T>
-	bool sorted(std::vector<T>& vec) {
-		for (int i = 1, n = vec.size(); i < n; i++) {
-			if (vec[i] < vec[i-1]) return false;
-		}
-
-		return true;
-	}
 };
 
 #endif
