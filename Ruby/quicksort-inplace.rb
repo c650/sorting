@@ -3,7 +3,7 @@
 # str is array of chars
 # pivot point is index in array to pivot on
 # returns type like `str`
-def quicksort(str, _begin, _end) 
+def quicksort(str, _begin, _end)
 	return str[_begin..._end] if _end - _begin <= 1
 
 	pivot = str[_end - 1] # choose last as pivot

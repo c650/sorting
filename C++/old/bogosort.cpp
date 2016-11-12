@@ -6,7 +6,7 @@
 using namespace std;
 
 bool is_sorted(const vector<char>& vec) {
-	
+
 	for (int i = 1, n = vec.size(); i < n; i++) {
 		if (vec[i-1] > vec[i]) return false;
 		// returns false if an element is smaller than one to its left
@@ -19,9 +19,9 @@ void shuffle(vector<char>& vec) {
 	int i,n, tmp, rand_idx;
 
 	for(i = 0, n = vec.size(); i < n; i++) {
-		
+
 		tmp = vec[i]; // store temporarily
-		
+
 		rand_idx = rand() % n; // pick a random index in the vector/array
 
 		// swap each element in vector/array with another one that is chosen randomly
