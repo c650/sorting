@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <iterator>
 #include <algorithm>
- 
+
 using namespace std;
 /* swap function */
 void swap(vector<char>& vec, int a, int b) {
@@ -26,18 +26,18 @@ void heapsort(vector<char>& vec) {
         swap(vec[0],vec[count]);
     }
 }
- 
+
 int main() {
- 
+
     cout << "give me a string" << endl;
     string s; getline(cin, s);
- 
+
     vector<char> vec(s.begin(), s.end());
- 
+
     heapsort(vec);
- 
+
     string str(vec.begin(), vec.end());
- 
+
     cout << str << endl;
     return 0;
 }
