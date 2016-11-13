@@ -3,7 +3,7 @@ class Array
 	def mergesort
 
 		return self if length <= 1
-		
+
 		if length == 2
 			if (self[0] > self[1])
 				self[0],self[1] = self[1],self[0]
@@ -23,7 +23,7 @@ class Array
 				left.shift
 			else
 				arr << right.first
-				right.shift	
+				right.shift
 			end
 		end
 

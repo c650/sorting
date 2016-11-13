@@ -19,7 +19,7 @@ def insertionsort(str)
 		for i in 1...strlen #exclusive range
 
 			if str[i-1] > str[i]
-				hold = str[i] # store value to INSERT  
+				hold = str[i] # store value to INSERT
 
 				pos = i
 
@@ -30,7 +30,7 @@ def insertionsort(str)
 					# stop if we have shifted all the elements that are BOTH greater than str[i] AND
 	            	# to the left of str[i]
 				end
-				
+
 				# put str[i] in its rightful spot, just left of the last element we shifted, or the original spot of
 	        	# the last element we shifted
 				str[pos] = hold
@@ -42,13 +42,13 @@ def insertionsort(str)
 	return str
 end
 
-def quicksort(str, _begin, _end) 
+def quicksort(str, _begin, _end)
 	return str[_begin..._end] if _end - _begin <= 1
-	
+
 	if _end - _begin <= 10
 		return insertionsort(str[_begin..._end])
 	end
-		 
+
 
 	pivot = str[_end - 1] # choose last as pivot
 

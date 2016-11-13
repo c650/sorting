@@ -21,7 +21,7 @@ void insertionsort(char* arr, const int& begin, const int& end) {
 				auto pos = i;
 
 				while (pos > begin && arr[pos-1] > hold) {
-					
+
 					arr[pos] = arr[pos-1];
 					pos--;
 				}
@@ -42,7 +42,7 @@ void quicksort(char* arr, const int& begin, const int& end) {
 	}
 
 	int a,b;
- 
+
     char pivot = arr[end-1];
 
     a = begin; b = end - 1;
@@ -65,7 +65,7 @@ void quicksort(char* arr, const int& begin, const int& end) {
 
     std::thread left(quicksort, arr, begin, b);
     std::thread right(quicksort, arr, b+1, end);
-    
+
     left.join();
     right.join();
 }

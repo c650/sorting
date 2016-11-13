@@ -3,7 +3,7 @@
 # str is array of chars
 # pivot point is index in array to pivot on
 # returns type like `str`
-def quicksort(str, pivot_point) 
+def quicksort(str, pivot_point)
 	strlen = str.length
 	return str if strlen <= 1
 

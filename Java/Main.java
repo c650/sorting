@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class SortingTest {
+public class Main {
 	private static final int SIZE = 10;
 
 	public static void

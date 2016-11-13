@@ -28,7 +28,7 @@ void insertionsort(vector<char>::iterator begin, vector<char>::iterator end) {
 				auto pos = i;
 
 				while (pos > begin && *(pos - 1) > hold) {
-					
+
 					*pos = *(pos - 1);
 					pos--;
 				}
@@ -49,7 +49,7 @@ void quicksort(vector<char>::iterator begin, vector<char>::iterator end) {
 	}
 
 	vector<char>::iterator a, b;
- 
+
     char pivot = *(end - 1);
 
     a = begin; b = end - 1;
