@@ -1,8 +1,13 @@
 module Sorting
 	def self.bubblesort(arr)
-		for i in 0...(arr.length-1)
+		c = true
+		while c
+			c = false
 			for j in 0...(arr.length-1)
-				arr[j],arr[j+1] = arr[j+1],arr[j] if arr[j] > arr[j+1]
+				if arr[j] > arr[j+1]
+					arr[j],arr[j+1] = arr[j+1],arr[j]
+					c = true
+				end # end if
 			end # end for
 		end # end for
 	end

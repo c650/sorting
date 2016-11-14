@@ -11,10 +11,15 @@ namespace Sorting {
 
 	template<typename T>
 	void bubblesort(Iterator<T> begin, Iterator<T> end) {
-		for (Iterator<T> it = begin ; it != end-1 ; it++)
+		bool c = true;
+		while (c) {
+			c = false;
 			for (Iterator<T> inner_it = begin ; inner_it != end-1 ; inner_it++)
-				if ( *inner_it > *(inner_it+1) )
+				if ( *inner_it > *(inner_it+1) ) {
 					std::swap(*inner_it, *(inner_it+1));
+					c = true;
+				}
+		}
 	}
 
 	template<typename T>

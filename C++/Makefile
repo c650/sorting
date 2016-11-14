@@ -1,4 +1,4 @@
-CC = g++-5
+CC = g++
 CFLAGS = -Wall -Werror -std=c++11
 
 SRC = main.cpp

@@ -3,12 +3,15 @@ import java.util.ArrayList;
 public class Sorting<T extends Comparable<T>> {
 	public static <T extends Comparable<T>> void
 	bubblesort(ArrayList<T> arr) {
-		for (int i = 0 ; i < arr.size()-1 ; i++) {
+		boolean c = true;
+		while ( c ) {
+			c = false;
 			for (int j = 0 ; j < arr.size()-1 ; j++) {
 				if ( arr.get(j).compareTo( arr.get(j+1) ) > 0) {
 					T tmp = arr.get(j);
 					arr.set(j, arr.get(j+1));
 					arr.set(j+1, tmp);
+					c = true;
 				}
 			}
 		}
