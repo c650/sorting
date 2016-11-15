@@ -11,6 +11,8 @@
 
 Not all implementations are as efficient as they can ideally be. Feel free to fork this repository for learning purposes or otherwise.
 
+Now in Java!
+
 #### Licensing
 
 This code is all licensed under the <a href="https://github.com/c650/sorting/blob/master/LICENSE">MIT License</a>
