@@ -98,11 +98,11 @@ public class Sorting<T extends Comparable<T>> {
 	}
 
 	public static <T> T
-	swap(T...args) {
+	swap(T a, T b) {
 		/*
 			https://stackoverflow.com/questions/2393906/how-do-i-make-my-swap-function-in-java/20600020#20600020
 			AND THEY SAID IT COULDN'T BE DONE.
 		*/
-		return args[0];
+		return a;
 	}
 }

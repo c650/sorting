@@ -76,8 +76,10 @@ namespace Sorting {
 					T hold = *inner_it;
 					Iterator<T> copy = inner_it;
 
-					while (copy != begin && *(copy-1) > hold)
-						*copy = *(--copy);
+					while (copy != begin && *(copy-1) > hold) {
+						*copy = *(copy-1);
+						copy--;
+					}
 
 					*copy = hold;
 				} /* end if */
@@ -169,7 +171,8 @@ namespace Sorting {
 
 	    while(b > a) {
 	        if ( *(b-1) > pivot) {
-	            *b = *(--b);
+	            *b = *(b-1);
+				b--;
 	        } else {
             	std::swap(*(b-1), *a++);
 	        }
