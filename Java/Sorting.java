@@ -4,17 +4,10 @@ public class Sorting<T extends Comparable<T>> {
 	public static <T extends Comparable<T>> void
 	bubblesort(ArrayList<T> arr) {
 		boolean c = true;
-		while ( c ) {
-			c = false;
-			for (int j = 0 ; j < arr.size()-1 ; j++) {
-				if ( arr.get(j).compareTo( arr.get(j+1) ) > 0) {
-					T tmp = arr.get(j);
-					arr.set(j, arr.get(j+1));
-					arr.set(j+1, tmp);
-					c = true;
-				}
-			}
-		}
+		while ( c && !(c = false))
+			for (int j = 0 ; j < arr.size()-1 ; j++)
+				if ( arr.get(j).compareTo( arr.get(j+1) ) > 0 && (c = true))
+					arr.set(j, swap( arr.get(j+1), arr.set(j+1, arr.get(j)) ));
 	}
 
 	public static <T extends Comparable<T>> void
@@ -24,10 +17,9 @@ public class Sorting<T extends Comparable<T>> {
 				if (arr.get(j).compareTo(arr.get(j-1)) < 0) {
 					T hold = arr.get(j);
 					int k = j;
-					while(k > 0 && arr.get(k-1).compareTo(hold) > 0) {
-						arr.set(k, arr.get(k-1));
-						k--;
-					}
+					while(k > 0 && arr.get(k-1).compareTo(hold) > 0)
+						arr.set(k, arr.get(--k));
+
 					arr.set(k, hold);
 				} /* end if */
 			} /* end for */
@@ -41,24 +33,19 @@ public class Sorting<T extends Comparable<T>> {
 			for (int j = i+1 ; j < arr.size() ; j++)
 				min_pos = arr.get(j).compareTo(arr.get(min_pos)) < 0 ? j : min_pos;
 
-			if (min_pos != i) {
-				T tmp = arr.get(i);
-				arr.set(i , arr.get(min_pos));
-				arr.set(min_pos, tmp);
-			} /* end if */
+			if (min_pos != i)
+				arr.set(i, swap( arr.get(min_pos), arr.set(min_pos, arr.get(i)) ));
+
 		} /* end for */
 	}
 
 	public static <T extends Comparable<T>> void
 	mergesort(ArrayList<T> arr) {
-		if (arr.size() <= 1) return;
-		else if (arr.size() == 2) {
-			if (arr.get(0).compareTo(arr.get(1)) > 0) {
-				T tmp = arr.get(0);
-				arr.set(0 , arr.get(1));
-				arr.set(1, tmp);
-			}
+		if (arr.size() == 2) {
+			if (arr.get(0).compareTo(arr.get(1)) > 0)
+				arr.set(0, swap( arr.get(1), arr.set(1, arr.get(0)) ));
 		}
+		if (arr.size() <= 2) return;
 
 		ArrayList<T> left,right;
 		left = new ArrayList<T>();
@@ -87,11 +74,11 @@ public class Sorting<T extends Comparable<T>> {
 
 	public static <T extends Comparable<T>> void
 	quicksort(ArrayList<T> arr) {
-		_quicksort(arr, 0 , arr.size());
+		quicksort(arr, 0 , arr.size());
 	}
 
 	private static <T extends Comparable<T>> void
-	_quicksort(ArrayList<T> arr, int begin, int end) {
+	quicksort(ArrayList<T> arr, int begin, int end) {
 		if (end <= begin) return;
 
 		T pivot = arr.get(end-1);
@@ -99,17 +86,23 @@ public class Sorting<T extends Comparable<T>> {
 
 		while(b > a) {
 			if ( arr.get(b-1).compareTo(pivot) > 0 ) {
-				arr.set(b , arr.get(b-1));
-				b--;
+				arr.set(b , arr.get(--b));
 			} else {
-				T tmp = arr.get(a);
-				arr.set(a , arr.get(b-1));
-				arr.set(b-1, tmp);
+				arr.set(a , swap(arr.get(b-1) , arr.set(b-1 , arr.get(a) ) ));
 			}
 		}
 
 		arr.set(b, pivot);
-		_quicksort(arr , begin , b);
-		_quicksort(arr , b + 1 , end);
+		quicksort(arr , begin , b);
+		quicksort(arr , b + 1 , end);
+	}
+
+	public static <T> T
+	swap(T...args) {
+		/*
+			https://stackoverflow.com/questions/2393906/how-do-i-make-my-swap-function-in-java/20600020#20600020
+			AND THEY SAID IT COULDN'T BE DONE.
+		*/
+		return args[0];
 	}
 }

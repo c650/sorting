@@ -9,17 +9,62 @@ namespace Sorting {
 	template<typename T>
 	using Iterator = typename std::vector<T>::iterator;
 
+/*
+    ------------------
+	    Prototypes
+	------------------
+*/
+
+	template<typename T>
+	void bubblesort(Iterator<T> begin, Iterator<T> end);
+
+	template<typename T>
+	void insertionsort(Iterator<T> begin, Iterator<T> end);
+
+	template<typename T>
+	void selectionsort(Iterator<T> begin, Iterator<T> end);
+
+	template<typename T>
+	void mergesort(Iterator<T> begin, Iterator<T> end);
+
+	template<typename T>
+	void quicksort(Iterator<T> begin, Iterator<T> end);
+
+/* and now some overloads... */
+
+	template<typename T>
+	void bubblesort(std::vector<T>& vec);
+
+	template<typename T>
+	void insertionsort(std::vector<T>& vec);
+
+	template<typename T>
+	void selectionsort(std::vector<T>& vec);
+
+	template<typename T>
+	void mergesort(std::vector<T>& vec);
+
+	template<typename T>
+	void quicksort(std::vector<T>& vec);
+
+/*
+    -----------------------
+	    Implementations
+	-----------------------
+*/
+
 	template<typename T>
 	void bubblesort(Iterator<T> begin, Iterator<T> end) {
 		bool c = true;
-		while (c) {
-			c = false;
+		while (c && !(c = false))
 			for (Iterator<T> inner_it = begin ; inner_it != end-1 ; inner_it++)
-				if ( *inner_it > *(inner_it+1) ) {
+				if ( *inner_it > *(inner_it+1) && (c = true))
 					std::swap(*inner_it, *(inner_it+1));
-					c = true;
-				}
-		}
+	}
+
+	template<typename T>
+	void bubblesort(std::vector<T>& vec) {
+		bubblesort<T>(vec.begin(), vec.end());
 	}
 
 	template<typename T>
@@ -31,10 +76,8 @@ namespace Sorting {
 					T hold = *inner_it;
 					Iterator<T> copy = inner_it;
 
-					while (copy != begin && *(copy-1) > hold) {
-						*copy = *(copy-1);
-						copy--;
-					} /* end while */
+					while (copy != begin && *(copy-1) > hold)
+						*copy = *(--copy);
 
 					*copy = hold;
 				} /* end if */
@@ -43,9 +86,14 @@ namespace Sorting {
 	}
 
 	template<typename T>
+	void insertionsort(std::vector<T>& vec) {
+		insertionsort<T>(vec.begin(), vec.end());
+	}
+
+	template<typename T>
 	void selectionsort(Iterator<T> begin, Iterator<T> end) {
-		for (Iterator<T> it = begin ; it != end ; it++) {
-			Iterator<T> min_pos = it;
+		for (Iterator<T> it = begin, min_pos ; it != end ; it++) {
+			min_pos = it;
 
 			for (Iterator<T> inner_it = it+1 ; inner_it != end ; inner_it++)
 				min_pos = *inner_it < *min_pos ? inner_it : min_pos;
@@ -53,6 +101,11 @@ namespace Sorting {
 			if (min_pos != it)
 				std::swap(*it, *min_pos);
 		}
+	}
+
+	template<typename T>
+	void selectionsort(std::vector<T>& vec) {
+		selectionsort<T>(vec.begin(), vec.end());
 	}
 
 	template<typename T>
@@ -77,22 +130,16 @@ namespace Sorting {
 
 	    mergesort(left); mergesort(right);
 
-	    int itr = 0;
-
-	    while(!left.empty() && !right.empty() && itr < n) {
-	        if (left[0] < right[0]) {
+	    while(!left.empty() && !right.empty()) {
+	        if (left.front() < right.front()) {
 
 	            vec.push_back(left.front());
-
 	            left.erase(left.begin());
 	        } else {
 
 	            vec.push_back(right.front());
-
 	            right.erase(right.begin());
 	        }
-
-	        itr++;
 	    }
 
 	    if (!left.empty()) {
@@ -100,9 +147,15 @@ namespace Sorting {
 	    } else if (!right.empty()) {
 	        vec.insert(vec.end(), right.begin(), right.end());
 	    }
-
 	}
 
+	template<typename T>
+	void mergesort(Iterator<T> begin, Iterator<T> end) {
+		std::vector<T> vec(begin,end);
+		mergesort<T>(vec);
+		for (auto& e : vec)
+			*(begin++) = e;
+	}
 
 	template<typename T>
 	void quicksort(Iterator<T> begin, Iterator<T> end) {
@@ -116,8 +169,7 @@ namespace Sorting {
 
 	    while(b > a) {
 	        if ( *(b-1) > pivot) {
-	            *b = *(b-1);
-	            b--;
+	            *b = *(--b);
 	        } else {
             	std::swap(*(b-1), *a++);
 	        }
@@ -129,6 +181,10 @@ namespace Sorting {
 	    quicksort<T>(b + 1, end);
 	}
 
+	template<typename T>
+	void quicksort(std::vector<T>& vec) {
+		quicksort<T>(vec.begin(), vec.end());
+	}
 };
 
 #endif
