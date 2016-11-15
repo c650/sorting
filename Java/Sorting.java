@@ -31,8 +31,7 @@ public class Sorting<T extends Comparable<T>> {
 			for (int j = i+1 ; j < arr.size() ; j++)
 				min_pos = arr.get(j).compareTo(arr.get(min_pos)) < 0 ? j : min_pos;
 
-			if (min_pos != i)
-				arr.set(i, swap( arr.get(min_pos), arr.set(min_pos, arr.get(i)) ));
+			arr.set(i, swap( arr.get(min_pos), arr.set(min_pos, arr.get(i)) ));
 
 		} /* end for */
 	}

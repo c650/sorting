@@ -98,8 +98,7 @@ namespace Sorting {
 			for (Iterator<T> inner_it = it+1 ; inner_it != end ; inner_it++)
 				min_pos = *inner_it < *min_pos ? inner_it : min_pos;
 
-			if (min_pos != it)
-				std::swap(*it, *min_pos);
+			std::swap(*it, *min_pos);
 		}
 	}
 
