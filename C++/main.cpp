@@ -34,19 +34,19 @@ int main() {
 	pvec(vec);
 	shuf(vec);
 
-	Sorting::bubblesort<int>( vec.begin(), vec.end() );
+	Sorting::bubblesort<int>( vec );
 	pvec(vec);
 	shuf(vec);
 
-	Sorting::insertionsort<int>( vec.begin() , vec.end() );
+	Sorting::insertionsort<int>( vec );
 	pvec(vec);
 	shuf(vec);
 
-	Sorting::selectionsort<int>( vec.begin() , vec.end() );
+	Sorting::selectionsort<int>( vec );
 	pvec(vec);
 	shuf(vec);
 
-	Sorting::quicksort<int>( vec.begin() , vec.end() );
+	Sorting::quicksort<int>( vec );
 	pvec(vec);
 	shuf(vec);
 
