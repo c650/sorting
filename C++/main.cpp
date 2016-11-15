@@ -24,7 +24,7 @@ static void shuf(std::vector<T>& v) {
 int main() {
 	srand(time(NULL));
 
-	std::vector<int> vec(10);
+	std::vector<int> vec(25);
 	for (auto& a : vec)
 		a = rand() % vec.size();
 

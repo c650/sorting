@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Main {
-	private static final int SIZE = 10;
+	private static final int SIZE = 25;
 
 	public static void
 	main(String[] args) {
