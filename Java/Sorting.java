@@ -12,17 +12,15 @@ public class Sorting<T extends Comparable<T>> {
 
 	public static <T extends Comparable<T>> void
 	insertionsort(ArrayList<T> arr) {
-		for (int i = 0 ; i < arr.size() ; i++) {
-			for (int j = i+1 ; j < arr.size() ; j++) {
-				if (arr.get(j).compareTo(arr.get(j-1)) < 0) {
-					T hold = arr.get(j);
-					int k = j;
-					while(k > 0 && arr.get(k-1).compareTo(hold) > 0)
-						arr.set(k, arr.get(--k));
+		for (int j = 1 ; j < arr.size() ; j++) {
+			if (arr.get(j).compareTo(arr.get(j-1)) < 0) {
+				T hold = arr.get(j);
+				int k = j;
+				while(k > 0 && arr.get(k-1).compareTo(hold) > 0)
+					arr.set(k, arr.get(--k));
 
-					arr.set(k, hold);
-				} /* end if */
-			} /* end for */
+				arr.set(k, hold);
+			} /* end if */
 		} /* end for */
 	}
 

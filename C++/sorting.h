@@ -69,21 +69,19 @@ namespace Sorting {
 
 	template<typename T>
 	void insertionsort(Iterator<T> begin, Iterator<T> end) {
-		for (Iterator<T> it = begin ; it != end ; it++) {
-			for (Iterator<T> inner_it = begin+1 ; inner_it != end ; inner_it++) {
-				if ( *inner_it < *(inner_it-1) ) {
+		for (Iterator<T> inner_it = begin+1 ; inner_it != end ; inner_it++) {
+			if ( *inner_it < *(inner_it-1) ) {
 
-					T hold = *inner_it;
-					Iterator<T> copy = inner_it;
+				T hold = *inner_it;
+				Iterator<T> copy = inner_it;
 
-					while (copy != begin && *(copy-1) > hold) {
-						*copy = *(copy-1);
-						copy--;
-					}
+				while (copy != begin && *(copy-1) > hold) {
+					*copy = *(copy-1);
+					copy--;
+				}
 
-					*copy = hold;
-				} /* end if */
-			} /* end for */
+				*copy = hold;
+			} /* end if */
 		} /* end for */
 	}
 

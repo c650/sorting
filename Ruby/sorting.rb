@@ -13,22 +13,19 @@ module Sorting
 	end
 
 	def self.insertionsort(arr)
-		arr.length.times do |x|
+		for i in 1...arr.length
 
-			for i in 1...arr.length
+			if arr[i-1] > arr[i]
+				hold = arr[i]
+				pos = i
 
-				if arr[i-1] > arr[i]
-					hold = arr[i]
-					pos = i
-
-					while pos > 0 && arr[pos - 1] > hold
-						arr[pos] = arr[pos - 1]
-						pos -= 1
-					end # end while
-					arr[pos] = hold
-				end # end if
-			end # end for
-		end	# end .times
+				while pos > 0 && arr[pos - 1] > hold
+					arr[pos] = arr[pos - 1]
+					pos -= 1
+				end # end while
+				arr[pos] = hold
+			end # end if
+		end # end for
 	end # end def
 
 	def self.selectionsort(arr)
